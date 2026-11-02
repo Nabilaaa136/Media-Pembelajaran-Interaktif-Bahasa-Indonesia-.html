@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayo Menyimak Dongeng! - Semut dan Belalang</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandGreen: '#4ADE80',
+                        brandDarkGreen: '#15803D',
+                        brandYellow: '#FACC15',
+                        brandCream: '#FEF08A',
+                        brandBlue: '#38BDF8',
+                        brandBg: '#F0FDF4',
+                        brandBrown: '#854D0E',
+                        brandDark: '#1E293B'
+                    },
+                    fontFamily: {
+                        playpen: ['"Playpen Sans"', 'cursive', 'sans-serif'],
+                        quick: ['"Quicksand"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #F0FDF4;
+            background-image: radial-gradient(#BBF7D0 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+        }
+        .heading-font {
+            font-family: 'Playpen Sans', cursive;
+        }
+        .card-shadow {
+            box-shadow: 0 8px 0px 0px rgba(0, 0, 0, 0.06);
+        }
+        .btn-bounce:hover {
+            transform: translateY(-3px);
+            transition: all 0.2s ease;
+        }
+        .btn-bounce:active {
+            transform: translateY(1px);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <header class="bg-white/90 backdrop-blur border-b-4 border-green-400 sticky top-0 z-50 px-4 py-3 shadow-sm">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+                <div class="bg-yellow-400 p-2 rounded-2xl text-green-900 font-bold text-xl heading-font flex items-center gap-2 shadow-inner">
+                    🐜 🦗
+                </div>
+                <div>
+                    <h1 class="heading-font text-lg md:text-xl font-extrabold text-green-700 leading-tight">MEDIA BELAJAR SD</h1>
+                    <p class="text-xs text-slate-500 font-semibold">Bahasa Indonesia Kelas IV</p>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <nav class="hidden md:flex items-center space-x-2">
+                <button onclick="navigateTo('home')" class="nav-btn px-3 py-1.5 rounded-xl font-bold text-slate-600 hover:bg-green-100 transition">Beranda</button>
+                <button onclick="navigateTo('intro')" class="nav-btn px-3 py-1.5 rounded-xl font-bold text-slate-600 hover:bg-green-100 transition">Pengenalan</button>
+                <button onclick="navigateTo('video')" class="nav-btn px-3 py-1.5 rounded-xl font-bold text-slate-600 hover:bg-green-100 transition">Menyimak</button>
+                <button onclick="navigateTo('materi')" class="nav-btn px-3 py-1.5 rounded-xl font-bold text-slate-600 hover:bg-green-100 transition">Materi</button>
+                <button onclick="navigateTo('act1')" class="nav-btn px-3 py-1.5 rounded-xl font-bold text-slate-600 hover:bg-green-100 transition">Aktivitas 1</button>
+                <button onclick="navigateTo('act2')" class="nav-btn px-3 py-1.5 rounded-xl font-bold text-slate-600 hover:bg-green-100 transition">Aktivitas 2</button>
+                <button onclick="navigateTo('quiz')" class="nav-btn px-3 py-1.5 rounded-xl font-bold text-slate-600 hover:bg-green-100 transition">Kuis</button>
+            </nav>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-green-700 focus:outline-none p-1">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-3 pt-3 border-t border-green-200 flex flex-col space-y-2">
+            <button onclick="navigateTo('home')" class="text-left px-3 py-2 rounded-lg font-bold text-slate-700 hover:bg-green-100">🏠 Beranda</button>
+            <button onclick="navigateTo('intro')" class="text-left px-3 py-2 rounded-lg font-bold text-slate-700 hover:bg-green-100">💡 Pengenalan Cerita</button>
+            <button onclick="navigateTo('video')" class="text-left px-3 py-2 rounded-lg font-bold text-slate-700 hover:bg-green-100">🎧 Kegiatan Menyimak</button>
+            <button onclick="navigateTo('materi')" class="text-left px-3 py-2 rounded-lg font-bold text-slate-700 hover:bg-green-100">📚 Materi Dongeng</button>
+            <button onclick="navigateTo('act1')" class="text-left px-3 py-2 rounded-lg font-bold text-slate-700 hover:bg-green-100">🧩 Aktivitas 1: Urutan Cerita</button>
+            <button onclick="navigateTo('act2')" class="text-left px-3 py-2 rounded-lg font-bold text-slate-700 hover:bg-green-100">🌱 Aktivitas 2: Refleksi Amanat</button>
+            <button onclick="navigateTo('quiz')" class="text-left px-3 py-2 rounded-lg font-bold text-slate-700 hover:bg-green-100">📝 Kuis Interaktif</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-4xl mx-auto px-4 py-6 w-full flex-grow">
+
+        <!-- 1. HALAMAN PEMBUKA / BERANDA -->
+        <section id="sec-home" class="space-y-6 animate-fade">
+            <div class="bg-white rounded-3xl p-6 md:p-8 border-4 border-green-300 card-shadow text-center relative overflow-hidden">
+                <div class="absolute -top-10 -left-10 w-32 h-32 bg-yellow-200 rounded-full blur-xl opacity-60"></div>
+                <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-green-200 rounded-full blur-xl opacity-60"></div>
+                
+                <span class="inline-block bg-yellow-300 text-yellow-900 font-extrabold px-4 py-1.5 rounded-full text-xs md:text-sm tracking-wide mb-3 shadow-sm">
+                    BAHASA INDONESIA KELAS 4 SD • FASE B • SEMESTER 1
+                </span>
+                
+                <h1 class="heading-font text-3xl md:text-5xl font-extrabold text-green-700 mb-2 leading-tight">
+                    AYO MENYIMAK DONGENG!
+                </h1>
+                <p class="text-base md:text-xl font-bold text-amber-700 mb-6">
+                    Memahami Isi Dongeng "Semut dan Belalang"
+                </p>
+
+                <!-- Visual Karakter SVG -->
+                <div class="flex justify-center items-center gap-6 my-6">
+                    <!-- Character Semut -->
+                    <div class="flex flex-col items-center group">
+                        <div class="w-28 h-28 md:w-36 md:h-36 bg-emerald-100 rounded-full flex items-center justify-center p-2 border-4 border-emerald-400 transform group-hover:scale-105 transition shadow-sm">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <path d="M 50 15 C 20 15 15 35 45 35 C 75 35 70 15 50 15 Z" fill="#22c55e" />
+                                <path d="M 50 15 Q 40 25 30 35" stroke="#15803d" stroke-width="2" fill="none" />
+                                <circle cx="50" cy="75" r="16" fill="#78350f" />
+                                <circle cx="50" cy="55" r="12" fill="#92400e" />
+                                <circle cx="50" cy="38" r="10" fill="#b45309" />
+                                <circle cx="46" cy="36" r="2" fill="#fff" />
+                                <circle cx="54" cy="36" r="2" fill="#fff" />
+                                <circle cx="46" cy="36" r="1" fill="#000" />
+                                <circle cx="54" cy="36" r="1" fill="#000" />
+                                <path d="M 47 30 Q 40 20 35 22" stroke="#78350f" stroke-width="2" fill="none" stroke-linecap="round" />
+                                <path d="M 53 30 Q 60 20 65 22" stroke="#78350f" stroke-width="2" fill="none" stroke-linecap="round" />
+                                <path d="M 40 55 L 25 60 M 40 60 L 25 70 M 60 55 L 75 60 M 60 60 L 75 70" stroke="#78350f" stroke-width="2.5" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <span class="mt-2 font-bold heading-font text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full text-xs">Si Semut Rajin</span>
+                    </div>
+
+                    <!-- Character Belalang -->
+                    <div class="flex flex-col items-center group">
+                        <div class="w-28 h-28 md:w-36 md:h-36 bg-amber-100 rounded-full flex items-center justify-center p-2 border-4 border-amber-400 transform group-hover:scale-105 transition shadow-sm">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <path d="M 70 30 Q 75 20 80 30" stroke="#d97706" stroke-width="2" fill="none" />
+                                <text x="65" y="25" font-size="12" fill="#d97706">🎵</text>
+                                <ellipse cx="50" cy="65" rx="12" ry="20" fill="#84cc16" transform="rotate(-15 50 65)" />
+                                <circle cx="45" cy="40" r="12" fill="#a3e635" />
+                                <circle cx="42" cy="38" r="3" fill="#fff" />
+                                <circle cx="42" cy="38" r="1.5" fill="#000" />
+                                <path d="M 40 45 Q 45 48 48 44" stroke="#3f6212" stroke-width="1.5" fill="none" stroke-linecap="round" />
+                                <path d="M 55 60 L 75 45 L 80 75" stroke="#4d7c0f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                                <path d="M 42 60 L 25 50 L 20 70" stroke="#4d7c0f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                                <path d="M 43 30 Q 35 15 25 18" stroke="#3f6212" stroke-width="2" fill="none" stroke-linecap="round" />
+                                <path d="M 47 30 Q 50 15 60 15" stroke="#3f6212" stroke-width="2" fill="none" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <span class="mt-2 font-bold heading-font text-amber-800 bg-amber-100 px-3 py-1 rounded-full text-xs">Si Belalang Santai</span>
+                    </div>
+                </div>
+
+                <!-- Tombol Utama -->
+                <div class="pt-4">
+                    <button onclick="navigateTo('intro')" class="btn-bounce bg-gradient-to-r from-green-500 to-emerald-600 text-white font-extrabold text-xl px-8 py-4 rounded-2xl shadow-lg border-b-4 border-green-700 inline-flex items-center gap-3">
+                        <span>Mulai Belajar</span>
+                        <i class="fa-solid fa-circle-play text-yellow-300 text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kartu Identitas Pembuat -->
+            <div class="bg-amber-50 rounded-2xl p-5 border-2 border-amber-200 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-amber-400 overflow-hidden shadow-md flex-shrink-0 bg-amber-200">
+                        <img src="https://lh3.googleusercontent.com/gg/AAbN-8p6V4T-4235sW4K9p09d_328_N985" alt="Nabila Juita" class="w-full h-full object-cover object-center" onerror="this.src='https://placehold.co/150x150/facc15/78350f?text=NJ'">
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-amber-900 text-xs md:text-sm uppercase tracking-wide">Dibuat oleh:</h4>
+                        <p class="font-extrabold text-slate-800 text-base md:text-lg">Nabila Juita <span class="text-slate-500 text-sm font-normal">(NIM: 24129257)</span></p>
+                        <p class="text-xs text-amber-800 font-semibold">Pendidikan Guru Sekolah Dasar (PGSD)</p>
+                        <p class="text-xs text-amber-700">Universitas Negeri Padang</p>
+                    </div>
+                </div>
+                <div class="bg-white px-4 py-2 rounded-xl border border-amber-200 text-center text-xs font-bold text-amber-800 flex items-center gap-2">
+                    <span>Elemen: Menyimak</span> 🎧
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. PENGENALAN CERITA -->
+        <section id="sec-intro" class="hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 md:p-8 border-4 border-sky-300 card-shadow">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-sky-100 text-sky-800 text-2xl p-3 rounded-2xl">💡</span>
+                    <div>
+                        <h2 class="heading-font text-2xl md:text-3xl font-extrabold text-sky-700">Pengenalan Cerita</h2>
+                        <p class="text-sm text-slate-500">Sebelum menyimak, mari kita persiapkan diri terlebih dahulu!</p>
+                    </div>
+                </div>
+
+                <div class="bg-sky-50 rounded-2xl p-5 border border-sky-200 mb-6 flex flex-col md:flex-row items-center gap-6">
+                    <div class="w-full md:w-1/3 bg-white p-4 rounded-xl text-center border border-sky-200 shadow-sm">
+                        <div class="text-6xl mb-2">🌿</div>
+                        <p class="font-bold text-sky-900 text-sm">Hutan Musim Panas</p>
+                        <p class="text-xs text-slate-500 mt-1">Kisah berlatar di sebuah ladang dan hutan yang indah serta hangat.</p>
+                    </div>
+                    <div class="w-full md:w-2/3">
+                        <h3 class="font-bold text-slate-800 text-lg mb-2">Tahukah Kamu?</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm md:text-base">
+                            Dongeng adalah cerita khayalan yang kaya akan pesan moral kebaikan. Dalam cerita fabel <b>"Semut dan Belalang"</b>, kita akan belajar bagaimana dua ekor serangga menjalani hari-hari mereka di musim panas sebelum musim dingin tiba.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pertanyaan Pemantik Interaktif -->
+                <h3 class="heading-font text-lg font-bold text-slate-700 mb-3">Klik pertanyaan di bawah untuk membuka bahasannya! 🤔</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div onclick="toggleQuestion('q1')" class="cursor-pointer bg-yellow-50 hover:bg-yellow-100 p-4 rounded-2xl border-2 border-yellow-300 transition">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-amber-900 text-sm">1. Apakah kamu pernah mendengar cerita Semut & Belalang?</h4>
+                            <span id="q1-icon" class="text-amber-700 font-bold">➕</span>
+                        </div>
+                        <p id="q1-ans" class="hidden text-xs md:text-sm text-amber-800 mt-3 pt-3 border-t border-yellow-200 leading-relaxed">
+                            Dongeng ini sangat terkenal! Semut dikenal rajin bekerja, sedangkan Belalang suka bernyanyi dan bersantai.
+                        </p>
+                    </div>
+
+                    <div onclick="toggleQuestion('q2')" class="cursor-pointer bg-emerald-50 hover:bg-emerald-100 p-4 rounded-2xl border-2 border-emerald-300 transition">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-emerald-900 text-sm">2. Apa yang dilakukan Semut & Belalang saat musim panas?</h4>
+                            <span id="q2-icon" class="text-emerald-700 font-bold">➕</span>
+                        </div>
+                        <p id="q2-ans" class="hidden text-xs md:text-sm text-emerald-800 mt-3 pt-3 border-t border-emerald-200 leading-relaxed">
+                            Semut sibuk bekerja mengumpulkan makanan untuk persediaan musim dingin, sementara Belalang santai bermain musik.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Navigasi -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button onclick="navigateTo('home')" class="px-5 py-2.5 rounded-xl font-bold bg-slate-200 text-slate-700 hover:bg-slate-300 transition">
+                        ← Kembali
+                    </button>
+                    <button onclick="navigateTo('video')" class="btn-bounce bg-green-500 text-white font-extrabold px-6 py-3 rounded-xl shadow border-b-4 border-green-700 flex items-center gap-2">
+                        <span>Lanjut ke Menyimak</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. KEGIATAN MENYIMAK DONGENG -->
+        <section id="sec-video" class="hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 md:p-8 border-4 border-purple-300 card-shadow">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-purple-100 text-purple-800 text-2xl p-3 rounded-2xl">🎧</span>
+                    <div>
+                        <h2 class="heading-font text-2xl md:text-3xl font-extrabold text-purple-700">Kegiatan Menyimak Dongeng</h2>
+                        <p class="text-sm text-slate-500">Simaklah video fabel animasi berikut dengan cermat!</p>
+                    </div>
+                </div>
+
+                <!-- Petunjuk Menyimak -->
+                <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-2xl mb-6 text-sm text-amber-900">
+                    <p class="font-bold mb-1">📌 Petunjuk Menyimak:</p>
+                    <ul class="list-disc list-inside space-y-1 text-xs md:text-sm">
+                        <li>Perhatikan tindakan dan karakter <b>tokoh</b> dalam cerita.</li>
+                        <li>Amati perbedaan sifat antara <b>Semut</b> dan <b>Belalang</b>.</li>
+                        <li>Cermati <b>peristiwa penting</b> yang terjadi dari awal hingga akhir cerita.</li>
+                    </ul>
+                </div>
+
+                <!-- Embedded Video YouTube -->
+                <div class="relative w-full aspect-video rounded-2xl overflow-hidden border-4 border-purple-200 shadow-md bg-black mb-4">
+                    <iframe 
+                        class="w-full h-full"
+                        src="https://www.youtube.com/embed/mTaAIW8pPUE" 
+                        title="Kisah Semut dan Belalang | Dongeng Anak Bahasa Indonesia | Studycle Kids" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <!-- Tombol Cadangan YouTube -->
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-3 bg-purple-50 p-3 rounded-xl border border-purple-100 mb-6">
+                    <span class="text-xs font-semibold text-purple-800">Video tidak tampil? Tonton langsung di YouTube:</span>
+                    <a href="https://youtu.be/mTaAIW8pPUE" target="_blank" rel="noopener noreferrer" class="text-xs bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg transition inline-flex items-center gap-2 shadow-sm">
+                        <i class="fa-brands fa-youtube"></i> Buka Video YouTube
+                    </a>
+                </div>
+
+                <!-- Navigasi -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button onclick="navigateTo('intro')" class="px-5 py-2.5 rounded-xl font-bold bg-slate-200 text-slate-700 hover:bg-slate-300 transition">
+                        ← Kembali
+                    </button>
+                    <button onclick="navigateTo('materi')" class="btn-bounce bg-purple-600 text-white font-extrabold px-6 py-3 rounded-xl shadow border-b-4 border-purple-800 flex items-center gap-2">
+                        <span>Pahami Isi Dongeng</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MEMAHAMI ISI DONGENG (MATERI INTERAKTIF) -->
+        <section id="sec-materi" class="hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 md:p-8 border-4 border-emerald-300 card-shadow">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-emerald-100 text-emerald-800 text-2xl p-3 rounded-2xl">📚</span>
+                    <div>
+                        <h2 class="heading-font text-2xl md:text-3xl font-extrabold text-emerald-700">Materi Pembahasan Dongeng</h2>
+                        <p class="text-sm text-slate-500">Pilih tab di bawah untuk mempelajari setiap unsur dongeng!</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <div class="flex flex-wrap gap-2 mb-6 border-b-2 border-slate-200 pb-2">
+                    <button onclick="switchTab('tokoh')" id="tab-btn-tokoh" class="materi-tab-btn active px-4 py-2 rounded-xl font-bold text-sm bg-emerald-500 text-white shadow">
+                        👥 Tokoh & Watak
+                    </button>
+                    <button onclick="switchTab('peristiwa')" id="tab-btn-peristiwa" class="materi-tab-btn px-4 py-2 rounded-xl font-bold text-sm bg-slate-100 text-slate-600 hover:bg-emerald-100">
+                        📖 Peristiwa Penting
+                    </button>
+                    <button onclick="switchTab('masalah')" id="tab-btn-masalah" class="materi-tab-btn px-4 py-2 rounded-xl font-bold text-sm bg-slate-100 text-slate-600 hover:bg-emerald-100">
+                        ⚠️ Masalah & Solusi
+                    </button>
+                    <button onclick="switchTab('amanat')" id="tab-btn-amanat" class="materi-tab-btn px-4 py-2 rounded-xl font-bold text-sm bg-slate-100 text-slate-600 hover:bg-emerald-100">
+                        🌟 Amanat Dongeng
+                    </button>
+                </div>
+
+                <!-- TAB CONTENT 1: TOKOH & WATAK -->
+                <div id="tab-tokoh" class="tab-content space-y-4">
+                    <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200 mb-4">
+                        <p class="text-xs md:text-sm text-emerald-900 leading-relaxed">
+                            <b>Tokoh:</b> Pelaku atau karakter dalam cerita.<br>
+                            <b>Watak:</b> Sifat kepribadian tokoh yang terlihat melalui perbuatan dan ucapannya.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Semut Card -->
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-100 p-5 rounded-2xl border-2 border-emerald-300 space-y-3">
+                            <div class="flex items-center gap-3">
+                                <span class="text-3xl">🐜</span>
+                                <div>
+                                    <h3 class="heading-font font-bold text-emerald-900 text-lg">Semut</h3>
+                                    <span class="bg-emerald-200 text-emerald-800 text-xs font-bold px-2 py-0.5 rounded-md">Tokoh Utama</span>
+                                </div>
+                            </div>
+                            <hr class="border-emerald-200">
+                            <div>
+                                <h4 class="font-bold text-xs text-emerald-800 uppercase tracking-wide">Watak / Sifat:</h4>
+                                <ul class="list-disc list-inside text-xs md:text-sm text-slate-700 mt-1 space-y-1">
+                                    <li><b>Rajin & Tekun:</b> Mengumpulkan persediaan makanan tanpa lelah.</li>
+                                    <li><b>Hemat & Bijaksana:</b> Menyiapkan kebutuhan masa depan.</li>
+                                    <li><b>Peduli & Baik Hati:</b> Bersedia menolong Belalang yang kelaparan.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Belalang Card -->
+                        <div class="bg-gradient-to-br from-amber-50 to-yellow-100 p-5 rounded-2xl border-2 border-amber-300 space-y-3">
+                            <div class="flex items-center gap-3">
+                                <span class="text-3xl">🦗</span>
+                                <div>
+                                    <h3 class="heading-font font-bold text-amber-900 text-lg">Belalang</h3>
+                                    <span class="bg-amber-200 text-amber-800 text-xs font-bold px-2 py-0.5 rounded-md">Tokoh Utama</span>
+                                </div>
+                            </div>
+                            <hr class="border-amber-200">
+                            <div>
+                                <h4 class="font-bold text-xs text-amber-800 uppercase tracking-wide">Watak / Sifat:</h4>
+                                <ul class="list-disc list-inside text-xs md:text-sm text-slate-700 mt-1 space-y-1">
+                                    <li><b>Pemalas & Menunda:</b> Asyik bernyanyi dan bersantai sepanjang musim panas.</li>
+                                    <li><b>Meremehkan Orang Lain:</b> Mengejek kerja keras Semut.</li>
+                                    <li><b>Menyesali Perbuatan:</b> Menyadarinya setelah mengalami kesulitan.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB CONTENT 2: PERISTIWA PENTING -->
+                <div id="tab-peristiwa" class="tab-content hidden space-y-4">
+                    <div class="bg-blue-50 p-4 rounded-2xl border border-blue-200 mb-4">
+                        <p class="text-xs md:text-sm text-blue-900">
+                            <b>Peristiwa Penting</b> adalah urutan kejadian utama yang dialami oleh para tokoh dalam alur cerita.
+                        </p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-2xl border-2 border-slate-100 shadow-sm">
+                            <div class="w-8 h-8 bg-emerald-500 text-white font-extrabold rounded-full flex items-center justify-center flex-shrink-0">1</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Kesibukan di Musim Panas</h4>
+                                <p class="text-xs md:text-sm text-slate-600 mt-0.5">Semut bekerja giat mengumpulkan makanan, sementara Belalang hanya bernyanyi dan bersenang-senang.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-2xl border-2 border-slate-100 shadow-sm">
+                            <div class="w-8 h-8 bg-amber-500 text-white font-extrabold rounded-full flex items-center justify-center flex-shrink-0">2</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Belalang Menertawakan Semut</h4>
+                                <p class="text-xs md:text-sm text-slate-600 mt-0.5">Belalang mengejek Semut karena membuang hari yang hangat hanya untuk bekerja keras.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-2xl border-2 border-slate-100 shadow-sm">
+                            <div class="w-8 h-8 bg-sky-500 text-white font-extrabold rounded-full flex items-center justify-center flex-shrink-0">3</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Musim Dingin Tiba</h4>
+                                <p class="text-xs md:text-sm text-slate-600 mt-0.5">Salju tebal menutupi ladang. Belalang kelaparan dan kedinginan karena tidak punya cadangan makanan.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-2xl border-2 border-slate-100 shadow-sm">
+                            <div class="w-8 h-8 bg-purple-500 text-white font-extrabold rounded-full flex items-center justify-center flex-shrink-0">4</div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Bantuan dan Penyesalan</h4>
+                                <p class="text-xs md:text-sm text-slate-600 mt-0.5">Semut dengan baik hati berbagi makanan dengan Belalang. Belalang pun menyesal dan berjanji akan rajin bekerja.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB CONTENT 3: MASALAH & SOLUSI -->
+                <div id="tab-masalah" class="tab-content hidden space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-red-50 p-5 rounded-2xl border-2 border-red-200 space-y-2">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">⚠️</span>
+                                <h3 class="heading-font font-bold text-red-800 text-lg">Masalah Cerita</h3>
+                            </div>
+                            <p class="text-xs md:text-sm text-red-900 leading-relaxed">
+                                Saat musim dingin yang dingin dan penuh salju datang, Belalang tidak memiliki makanan sedikit pun. Ia kelaparan, lemah, dan terancam bahaya.
+                            </p>
+                        </div>
+
+                        <div class="bg-green-50 p-5 rounded-2xl border-2 border-green-200 space-y-2">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">✅</span>
+                                <h3 class="heading-font font-bold text-green-800 text-lg">Penyelesaian Masalah</h3>
+                            </div>
+                            <p class="text-xs md:text-sm text-green-900 leading-relaxed">
+                                Belalang meminta pertolongan ke rumah Semut. Semut yang baik hati menyambutnya dan berbagi makanan hangat, sehingga Belalang terselamatkan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB CONTENT 4: AMANAT DONGENG -->
+                <div id="tab-amanat" class="tab-content hidden space-y-4">
+                    <div class="bg-gradient-to-r from-yellow-100 to-amber-100 p-6 rounded-2xl border-2 border-yellow-300 text-center space-y-3">
+                        <span class="text-4xl inline-block">🌟</span>
+                        <h3 class="heading-font font-extrabold text-amber-900 text-xl">Amanat (Pesan Moral) Dongeng</h3>
+                        <p class="text-sm md:text-base text-amber-950 max-w-xl mx-auto font-semibold leading-relaxed">
+                            "Jangan malas dan suka menunda pekerjaan. Bekerja keras serta bersiap-siap sejak awal akan memberikan kehidupan yang tenang dan aman di masa mendatang."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Navigasi -->
+                <div class="flex justify-between items-center pt-6 border-t border-slate-100 mt-6">
+                    <button onclick="navigateTo('video')" class="px-5 py-2.5 rounded-xl font-bold bg-slate-200 text-slate-700 hover:bg-slate-300 transition">
+                        ← Kembali
+                    </button>
+                    <button onclick="navigateTo('act1')" class="btn-bounce bg-emerald-600 text-white font-extrabold px-6 py-3 rounded-xl shadow border-b-4 border-emerald-800 flex items-center gap-2">
+                        <span>Aktivitas 1: Urutan Cerita</span>
+                        <i class="fa-solid fa-gamepad"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. AKTIVITAS INTERAKTIF 1: URUTAN PERISTIWA -->
+        <section id="sec-act1" class="hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 md:p-8 border-4 border-amber-300 card-shadow">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-amber-100 text-amber-800 text-2xl p-3 rounded-2xl">🧩</span>
+                    <div>
+                        <h2 class="heading-font text-2xl md:text-3xl font-extrabold text-amber-700">Aktivitas 1: Urutan Peristiwa</h2>
+                        <p class="text-sm text-slate-500">Susunlah urutan peristiwa dongeng berikut secara tepat dari 1 hingga 4!</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 mb-6 text-xs md:text-sm text-amber-900">
+                    💡 <b>Petunjuk:</b> Klik tombol <b>"Naik ⬆️"</b> atau <b>"Turun ⬇️"</b> pada tiap baris kartu hingga susunan urutan cerita benar.
+                </div>
+
+                <!-- Container Urutan Card -->
+                <div id="reorder-list" class="space-y-3 mb-6">
+                    <!-- Dynamic rendering via JS -->
+                </div>
+
+                <!-- Umpan Balik -->
+                <div id="act1-feedback" class="hidden p-4 rounded-2xl font-bold text-center text-sm md:text-base"></div>
+
+                <!-- Action Button -->
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pt-4 border-t border-slate-100">
+                    <button onclick="navigateTo('materi')" class="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold bg-slate-200 text-slate-700 hover:bg-slate-300 transition">
+                        ← Kembali
+                    </button>
+                    <div class="flex gap-2 w-full sm:w-auto">
+                        <button onclick="checkOrder()" class="btn-bounce flex-1 sm:flex-none bg-amber-500 text-white font-extrabold px-6 py-3 rounded-xl shadow border-b-4 border-amber-700">
+                            Periksa Jawaban 🔍
+                        </button>
+                        <button onclick="navigateTo('act2')" class="btn-bounce flex-1 sm:flex-none bg-green-500 text-white font-extrabold px-6 py-3 rounded-xl shadow border-b-4 border-green-700 flex items-center justify-center gap-2">
+                            <span>Lanjut Aktivitas 2</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. AKTIVITAS INTERAKTIF 2: REFLEKSI AMANAT -->
+        <section id="sec-act2" class="hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 md:p-8 border-4 border-teal-300 card-shadow">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-teal-100 text-teal-800 text-2xl p-3 rounded-2xl">🌱</span>
+                    <div>
+                        <h2 class="heading-font text-2xl md:text-3xl font-extrabold text-teal-700">Aktivitas 2: Refleksi Amanat</h2>
+                        <p class="text-sm text-slate-500">Apakah perilaku dalam kehidupan sehari-hari ini mencerminkan sifat Semut atau Belalang?</p>
+                    </div>
+                </div>
+
+                <!-- Container Kasus Kehidupan -->
+                <div id="reflection-container" class="space-y-4 mb-6">
+                    <!-- Dynamic rendering via JS -->
+                </div>
+
+                <!-- Navigasi -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button onclick="navigateTo('act1')" class="px-5 py-2.5 rounded-xl font-bold bg-slate-200 text-slate-700 hover:bg-slate-300 transition">
+                        ← Kembali
+                    </button>
+                    <button onclick="navigateTo('quiz')" class="btn-bounce bg-teal-600 text-white font-extrabold px-6 py-3 rounded-xl shadow border-b-4 border-teal-800 flex items-center gap-2">
+                        <span>Ikut Kuis!</span>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. KUIS INTERAKTIF -->
+        <section id="sec-quiz" class="hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 md:p-8 border-4 border-indigo-300 card-shadow">
+                <!-- Header Kuis -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-4 border-b-2 border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-indigo-100 text-indigo-800 text-2xl p-3 rounded-2xl">📝</span>
+                        <div>
+                            <h2 class="heading-font text-2xl md:text-3xl font-extrabold text-indigo-700">Kuis Evaluasi Menyimak</h2>
+                            <p class="text-xs md:text-sm text-slate-500">Jawablah 8 pertanyaan berikut dengan benar!</p>
+                        </div>
+                    </div>
+                    <!-- Indicator Progress -->
+                    <div id="quiz-progress-badge" class="bg-indigo-50 border border-indigo-200 text-indigo-900 font-extrabold px-4 py-2 rounded-xl text-center text-sm">
+                        Soal <span id="current-q-num">1</span> dari 8
+                    </div>
+                </div>
+
+                <!-- QUIZ CONTAINER (BERLANGSUNG) -->
+                <div id="quiz-box" class="space-y-6">
+                    <!-- Question Card -->
+                    <div class="bg-indigo-50/60 p-5 rounded-2xl border border-indigo-100">
+                        <h3 id="quiz-question-text" class="font-bold text-slate-800 text-base md:text-lg leading-snug">
+                            <!-- Populated by JS -->
+                        </h3>
+                    </div>
+
+                    <!-- Options Container -->
+                    <div id="quiz-options-container" class="grid grid-cols-1 gap-3">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <!-- Umpan Balik Kuis -->
+                    <div id="quiz-feedback-box" class="hidden p-4 rounded-2xl border text-sm leading-relaxed"></div>
+
+                    <!-- Tombol Lanjut Soal -->
+                    <div class="flex justify-end pt-2">
+                        <button id="btn-next-question" onclick="nextQuestion()" class="hidden btn-bounce bg-indigo-600 text-white font-extrabold px-6 py-3 rounded-xl shadow border-b-4 border-indigo-800 items-center gap-2">
+                            <span>Soal Berikutnya</span>
+                            <i class="fa-solid fa-circle-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- RESULT CONTAINER (SELESAI) -->
+                <div id="quiz-result-box" class="hidden text-center space-y-6 py-6">
+                    <div class="text-6xl" id="result-emoji">🏆</div>
+                    <div>
+                        <h3 class="heading-font text-3xl font-extrabold text-indigo-900 mb-1">Kuis Selesai!</h3>
+                        <p class="text-slate-600 font-medium">Berikut hasil pencapaian pemahamanmu:</p>
+                    </div>
+
+                    <!-- Score Badge -->
+                    <div class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-6 rounded-3xl inline-block shadow-lg border-4 border-white">
+                        <p class="text-xs font-bold uppercase tracking-widest text-indigo-200">Skor Akhir</p>
+                        <div id="final-score-val" class="heading-font text-5xl md:text-6xl font-black my-2">100</div>
+                        <div id="star-rating" class="text-yellow-300 text-2xl space-x-1">⭐ ⭐ ⭐ ⭐ ⭐</div>
+                    </div>
+
+                    <!-- Motivation Text -->
+                    <div id="result-message" class="bg-amber-50 p-4 rounded-2xl border border-amber-200 max-w-lg mx-auto text-amber-900 font-semibold text-sm md:text-base"></div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap justify-center gap-4 pt-4">
+                        <button onclick="restartQuiz()" class="btn-bounce bg-amber-500 text-white font-extrabold px-6 py-3 rounded-xl shadow border-b-4 border-amber-700 flex items-center gap-2">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <span>Ulang Kuis</span>
+                        </button>
+                        <button onclick="navigateTo('outro')" class="btn-bounce bg-green-600 text-white font-extrabold px-6 py-3 rounded-xl shadow border-b-4 border-green-800 flex items-center gap-2">
+                            <span>Halaman Penutup</span>
+                            <i class="fa-solid fa-flag-checkered"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. HALAMAN PENUTUP -->
+        <section id="sec-outro" class="hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 md:p-8 border-4 border-green-400 card-shadow text-center space-y-6">
+                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-4xl mx-auto border-4 border-green-300">
+                    🎉
+                </div>
+
+                <h2 class="heading-font text-3xl md:text-4xl font-extrabold text-green-700">HEBAT! KAMU LUAR BIASA!</h2>
+
+                <div class="bg-green-50 p-6 rounded-2xl border border-green-200 max-w-2xl mx-auto space-y-3 text-left">
+                    <h3 class="font-bold text-green-900 text-base md:text-lg flex items-center gap-2">
+                        <span>📌</span> Rangkuman Pembelajaran Hari Ini:
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-xs md:text-sm text-slate-700">
+                        <li>Kamu telah menyimak dongeng <b>"Semut dan Belalang"</b> dengan saksama.</li>
+                        <li>Kamu mampu mengenali watak <b>Semut yang rajin</b> dan <b>Belalang yang pemalas</b>.</li>
+                        <li>Kamu memahami urutan kejadian penting serta cara tokoh menyelesaikan masalah.</li>
+                        <li>Kamu mengerti amanat cerita untuk tidak menunda tugas dan selalu bersiap diri!</li>
+                    </ul>
+                </div>
+
+                <!-- Pesan Motivasi -->
+                <div class="bg-gradient-to-r from-yellow-300 to-amber-300 p-5 rounded-2xl text-amber-950 font-bold text-sm md:text-base max-w-2xl mx-auto shadow-sm">
+                    "Hebat! Kamu telah belajar menyimak dongeng, memahami isi cerita, dan menemukan pesan baik dari tindakan para tokohnya. Teruslah menjadi pendengar yang baik dan terapkan pelajaran positif dalam kehidupan sehari-hari."
+                </div>
+
+                <!-- Identitas Pembuat (Penutup) -->
+                <div class="pt-6 border-t border-slate-200 max-w-md mx-auto">
+                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-3">Identitas Pembuat Media Pembelajaran:</p>
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center flex flex-col items-center">
+                        <div class="w-20 h-20 rounded-full border-4 border-green-400 overflow-hidden shadow-md mb-2 bg-amber-200">
+                            <img src="https://lh3.googleusercontent.com/gg/AAbN-8p6V4T-4235sW4K9p09d_328_N985" alt="Nabila Juita" class="w-full h-full object-cover object-center" onerror="this.src='https://placehold.co/150x150/facc15/78350f?text=NJ'">
+                        </div>
+                        <p class="font-bold text-slate-800 text-base">Nabila Juita</p>
+                        <p class="text-xs text-slate-600">NIM: 24129257</p>
+                        <p class="text-xs text-slate-500 mt-1">Program Studi: Pendidikan Guru Sekolah Dasar (PGSD)</p>
+                        <p class="text-xs font-semibold text-green-700">Universitas Negeri Padang</p>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <button onclick="navigateTo('home')" class="btn-bounce bg-green-500 text-white font-extrabold px-8 py-3.5 rounded-2xl shadow border-b-4 border-green-700 inline-flex items-center gap-2">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Kembali ke Halaman Utama</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t-2 border-green-200 py-4 text-center text-xs text-slate-500 font-medium">
+        <p>© 2026 Media Pembelajaran Interaktif Bahasa Indonesia SD • Nabila Juita (24129257)</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- NAVIGATION CONTROLLER ---
+        const sections = ['home', 'intro', 'video', 'materi', 'act1', 'act2', 'quiz', 'outro'];
+
+        function navigateTo(secId) {
+            sections.forEach(id => {
+                const el = document.getElementById(`sec-${id}`);
+                if (el) {
+                    if (id === secId) {
+                        el.classList.remove('hidden');
+                        el.classList.add('animate-fade');
+                    } else {
+                        el.classList.add('hidden');
+                    }
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            const mobMenu = document.getElementById('mobile-menu');
+            if (mobMenu && !mobMenu.classList.contains('hidden')) {
+                mobMenu.classList.add('hidden');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const mobMenu = document.getElementById('mobile-menu');
+            mobMenu.classList.toggle('hidden');
+        }
+
+        function toggleQuestion(id) {
+            const ans = document.getElementById(`${id}-ans`);
+            const icon = document.getElementById(`${id}-icon`);
+            if (ans.classList.contains('hidden')) {
+                ans.classList.remove('hidden');
+                icon.textContent = '➖';
+            } else {
+                ans.classList.add('hidden');
+                icon.textContent = '➕';
+            }
+        }
+
+        // --- TAB MATERI CONTROLLER ---
+        function switchTab(tabName) {
+            const tabs = ['tokoh', 'peristiwa', 'masalah', 'amanat'];
+            tabs.forEach(t => {
+                const content = document.getElementById(`tab-${t}`);
+                const btn = document.getElementById(`tab-btn-${t}`);
+                if (t === tabName) {
+                    content.classList.remove('hidden');
+                    btn.className = "materi-tab-btn active px-4 py-2 rounded-xl font-bold text-sm bg-emerald-500 text-white shadow transition";
+                } else {
+                    content.classList.add('hidden');
+                    btn.className = "materi-tab-btn px-4 py-2 rounded-xl font-bold text-sm bg-slate-100 text-slate-600 hover:bg-emerald-100 transition";
+                }
+            });
+        }
+
+        // --- AKTIVITAS 1: URUTAN PERISTIWA ---
+        const initialOrderData = [
+            { id: 2, title: "Belalang menertawakan dan mengejek Semut yang sibuk bekerja keras." },
+            { id: 4, title: "Semut membantu memberikan makanan kepada Belalang yang menyesali perbuatannya." },
+            { id: 1, title: "Semut bekerja giat mengumpulkan cadangan makanan sepanjang musim panas." },
+            { id: 3, title: "Musim dingin tiba dengan salju tebal, Belalang kelaparan karena tidak punya makanan." }
+        ];
+
+        let currentOrder = [...initialOrderData];
+
+        function renderReorderList() {
+            const container = document.getElementById('reorder-list');
+            container.innerHTML = '';
+            currentOrder.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "flex items-center justify-between p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl transition hover:border-amber-300";
+                card.innerHTML = `
+                    <div class="flex items-center gap-3 pr-2">
+                        <span class="w-7 h-7 bg-amber-200 text-amber-900 rounded-full font-bold text-xs flex items-center justify-center flex-shrink-0">${index + 1}</span>
+                        <p class="text-xs md:text-sm font-semibold text-slate-800">${item.title}</p>
+                    </div>
+                    <div class="flex flex-col gap-1 flex-shrink-0">
+                        <button onclick="moveOrder(${index}, -1)" ${index === 0 ? 'disabled class="opacity-30 cursor-not-allowed px-2 py-1 bg-slate-200 text-xs font-bold rounded"' : 'class="px-2 py-1 bg-amber-400 hover:bg-amber-500 text-amber-950 text-xs font-bold rounded shadow transition"'}>⬆️ Naik</button>
+                        <button onclick="moveOrder(${index}, 1)" ${index === currentOrder.length - 1 ? 'disabled class="opacity-30 cursor-not-allowed px-2 py-1 bg-slate-200 text-xs font-bold rounded"' : 'class="px-2 py-1 bg-amber-400 hover:bg-amber-500 text-amber-950 text-xs font-bold rounded shadow transition"'}>⬇️ Turun</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function moveOrder(index, direction) {
+            const newIndex = index + direction;
+            if (newIndex >= 0 && newIndex < currentOrder.length) {
+                const temp = currentOrder[index];
+                currentOrder[index] = currentOrder[newIndex];
+                currentOrder[newIndex] = temp;
+                renderReorderList();
+                document.getElementById('act1-feedback').classList.add('hidden');
+            }
+        }
+
+        function checkOrder() {
+            const feedback = document.getElementById('act1-feedback');
+            const isCorrect = currentOrder.every((item, idx) => item.id === idx + 1);
+
+            feedback.classList.remove('hidden');
+            if (isCorrect) {
+                feedback.className = "p-4 rounded-2xl bg-emerald-100 border-2 border-emerald-400 text-emerald-900 font-bold text-center text-sm md:text-base";
+                feedback.innerHTML = "🎉 Jawabanmu BENAR! Kamu berhasil menyusun urutan cerita Semut dan Belalang secara tepat!";
+            } else {
+                feedback.className = "p-4 rounded-2xl bg-red-100 border-2 border-red-400 text-red-900 font-bold text-center text-sm md:text-base";
+                feedback.innerHTML = "❌ Urutan belum tepat. Coba ingat kembali kejadian di musim panas hingga musim dingin tiba ya!";
+            }
+        }
+
+        // --- AKTIVITAS 2: REFLEKSI AMANAT ---
+        const reflectionCases = [
+            {
+                id: 1,
+                title: "Budi langsung mengerjakan PR sekolah di sore hari sebelum bermain bersama teman-teman.",
+                correct: "semut",
+                explain: "Sikap Budi meneladani **Semut**, yaitu mengutamakan kewajiban dan tanggung jawab sebelum bersenang-senang!"
+            },
+            {
+                id: 2,
+                title: "Siti menunda-nunda belajar ujian akhir hingga malam harinya ia terburu-buru dan kelelahan.",
+                correct: "belalang",
+                explain: "Sikap Siti menyerupai **Belalang**, yaitu menunda pekerjaan sehingga kewalahan sendiri di akhir waktu."
+            },
+            {
+                id: 3,
+                title: "Lani selalu menyisihkan sebagian uang sakunya untuk ditabung di celengan.",
+                correct: "semut",
+                explain: "Sikap Lani meneladani **Semut**, yaitu bijaksana dan hemat mempersiapkan kebutuhan masa depan."
+            }
+        ];
+
+        function renderReflectionCases() {
+            const container = document.getElementById('reflection-container');
+            container.innerHTML = '';
+            reflectionCases.forEach((item, idx) => {
+                const div = document.createElement('div');
+                div.className = "p-5 bg-teal-50/70 rounded-2xl border-2 border-teal-200 space-y-3";
+                div.innerHTML = `
+                    <p class="font-bold text-slate-800 text-sm md:text-base">${idx + 1}. "${item.title}"</p>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="answerReflection(${item.id}, 'semut')" class="px-4 py-2 rounded-xl bg-white border-2 border-emerald-400 text-emerald-800 font-bold text-xs md:text-sm hover:bg-emerald-50 transition flex items-center gap-1.5 shadow-sm">
+                            🐜 Meneladani Semut
+                        </button>
+                        <button onclick="answerReflection(${item.id}, 'belalang')" class="px-4 py-2 rounded-xl bg-white border-2 border-amber-400 text-amber-800 font-bold text-xs md:text-sm hover:bg-amber-50 transition flex items-center gap-1.5 shadow-sm">
+                            🦗 Menyerupai Belalang
+                        </button>
+                    </div>
+                    <div id="ref-fb-${item.id}" class="hidden p-3 rounded-xl text-xs md:text-sm font-semibold mt-2"></div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function answerReflection(id, choice) {
+            const item = reflectionCases.find(c => c.id === id);
+            const fb = document.getElementById(`ref-fb-${id}`);
+            fb.classList.remove('hidden');
+
+            if (choice === item.correct) {
+                fb.className = "p-3 rounded-xl bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs md:text-sm font-semibold mt-2";
+                fb.innerHTML = `✅ <b>Jawaban Tepat!</b> ${item.explain}`;
+            } else {
+                fb.className = "p-3 rounded-xl bg-amber-100 border border-amber-300 text-amber-900 text-xs md:text-sm font-semibold mt-2";
+                fb.innerHTML = `💡 <b>Kurang Tepat.</b> ${item.explain}`;
+            }
+        }
+
+        // --- KUIS INTERAKTIF (8 SOAL) ---
+        const quizQuestions = [
+            {
+                q: "1. Siapakah tokoh utama yang diceritakan dalam dongeng fabel yang telah disimak?",
+                options: ["Gajah dan Kelinci", "Semut dan Belalang", "Kancil dan Buaya", "Kucing dan Tikus"],
+                ans: 1,
+                hint: "Cerita ini mengisahkan tentang serangga yang mengumpulkan makanan dan serangga yang bernyanyi."
+            },
+            {
+                q: "2. Bagaimana sifat atau watak utama dari tokoh Semut dalam cerita?",
+                options: ["Pemalas dan penakut", "Sombong dan nakal", "Rajin, tekun, dan hemat", "Pemarah dan curang"],
+                ans: 2,
+                hint: "Semut mengangkut cadangan makanan tanpa lelah di sepanjang musim panas."
+            },
+            {
+                q: "3. Apa kegiatan yang dilakukan Belalang sepanjang musim panas?",
+                options: ["Bekerja mencari persediaan makanan", "Bersenang-senang dan bermain musik", "Membangun rumah di tanah", "Menanam padi di ladang"],
+                ans: 1,
+                hint: "Belalang lebih memilih bersantai dan bernyanyi daripada bekerja keras."
+            },
+            {
+                q: "4. Mengapa Belalang menertawakan tindakan Semut saat musim panas?",
+                options: ["Karena Semut memakai baju yang lucu", "Karena Semut membuang waktu bekerja keras di hari yang cerah", "Karena makanan Semut terjatuh", "Karena Semut bernyanyi sumbang"],
+                ans: 1,
+                hint: "Belalang merasa Semut terlalu kaku dan tidak menikmati udara hangat musim panas."
+            },
+            {
+                q: "5. Apakah masalah utama yang dihadapi oleh Belalang saat musim dingin tiba?",
+                options: ["Rumahnya kebanjiran air", "Kelaparan karena tidak memiliki persediaan makanan", "Instrumen musiknya rusak", "Tersesat di tengah hutan"],
+                ans: 1,
+                hint: "Musim dingin membuat semua tempat tertutup salju tebal sehingga tidak ada tanaman."
+            },
+            {
+                q: "6. Apa tindakan baik Semut ketika Belalang yang kelaparan datang meminta bantuan?",
+                options: ["Menutup pintu dan mengusirnya", "Mengejek Belalang sampai menangis", "Menyambutnya dan membagikan makanan hangat", "Meminta imbalan uang yang banyak"],
+                ans: 2,
+                hint: "Semut adalah sosok yang peduli dan mau memaafkan kesalahan Belalang."
+            },
+            {
+                q: "7. Apakah amanat atau pesan moral utama dari dongeng Semut dan Belalang?",
+                options: ["Bersenang-senanglah terus tanpa perlu bekerja", "Jangan suka menunda pekerjaan dan bersiap-siaplah sejak awal", "Tidak perlu menolong teman yang kesusahan", "Bekerja hanya saat diperhatikan orang lain"],
+                ans: 1,
+                hint: "Pesan cerita mengajarkan untuk rajin seperti Semut agar hidup aman di masa depan."
+            },
+            {
+                q: "8. Contoh perilaku siswa SD yang meneladani sifat positif Semut dalam kehidupan sehari-hari adalah...",
+                options: ["Menunda tugas hingga malam sebelum dikumpulkan", "Menyiapkan peralatan sekolah sejak malam hari", "Bermain game sampai lupa belajar ujian", "Membiarkan meja kelas berantakan"],
+                ans: 1,
+                hint: "Mempersiapkan kebutuhan sebelum diperlukan adalah wujud tanggung jawab."
+            }
+        ];
+
+        let currentQIndex = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const qData = quizQuestions[currentQIndex];
+            document.getElementById('current-q-num').textContent = currentQIndex + 1;
+            document.getElementById('quiz-question-text').textContent = qData.q;
+
+            const optionsBox = document.getElementById('quiz-options-container');
+            optionsBox.innerHTML = '';
+
+            const feedbackBox = document.getElementById('quiz-feedback-box');
+            feedbackBox.classList.add('hidden');
+
+            const nextBtn = document.getElementById('btn-next-question');
+            nextBtn.classList.add('hidden');
+
+            qData.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "quiz-opt-btn text-left p-4 rounded-xl border-2 border-slate-200 hover:border-indigo-400 bg-white hover:bg-indigo-50/50 font-semibold text-xs md:text-sm text-slate-800 transition flex items-start gap-3 shadow-sm";
+                btn.innerHTML = `
+                    <span class="w-6 h-6 rounded-full bg-slate-100 border border-slate-300 text-slate-600 flex items-center justify-center text-xs font-bold flex-shrink-0">${String.fromCharCode(65 + idx)}</span>
+                    <span>${opt}</span>
+                `;
+                btn.onclick = () => selectAnswer(idx);
+                optionsBox.appendChild(btn);
+            });
+        }
+
+        function selectAnswer(selectedIdx) {
+            const qData = quizQuestions[currentQIndex];
+            const optBtns = document.querySelectorAll('.quiz-opt-btn');
+
+            optBtns.forEach(b => b.disabled = true);
+
+            const feedbackBox = document.getElementById('quiz-feedback-box');
+            feedbackBox.classList.remove('hidden');
+
+            if (selectedIdx === qData.ans) {
+                score += 12.5; // 8 x 12.5 = 100
+                optBtns[selectedIdx].className = "quiz-opt-btn text-left p-4 rounded-xl border-2 border-emerald-500 bg-emerald-100 font-bold text-xs md:text-sm text-emerald-900 flex items-start gap-3";
+                feedbackBox.className = "p-4 rounded-2xl bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs md:text-sm font-semibold";
+                feedbackBox.innerHTML = `✅ <b>Jawaban Benar!</b> Luar biasa, pemahaman menyimakmu sangat baik.`;
+            } else {
+                optBtns[selectedIdx].className = "quiz-opt-btn text-left p-4 rounded-xl border-2 border-red-400 bg-red-100 font-bold text-xs md:text-sm text-red-900 flex items-start gap-3";
+                optBtns[qData.ans].className = "quiz-opt-btn text-left p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 font-bold text-xs md:text-sm text-emerald-900 flex items-start gap-3";
+                feedbackBox.className = "p-4 rounded-2xl bg-amber-100 border border-amber-300 text-amber-900 text-xs md:text-sm font-semibold";
+                feedbackBox.innerHTML = `💡 <b>Kurang Tepat.</b> Jawaban yang benar adalah <b>"${qData.options[qData.ans]}"</b>. ${qData.hint}`;
+            }
+
+            const nextBtn = document.getElementById('btn-next-question');
+            nextBtn.classList.remove('hidden');
+            nextBtn.classList.add('inline-flex');
+        }
+
+        function nextQuestion() {
+            currentQIndex++;
+            if (currentQIndex < quizQuestions.length) {
+                loadQuestion();
+            } else {
+                showQuizResults();
+            }
+        }
+
+        function showQuizResults() {
+            document.getElementById('quiz-box').classList.add('hidden');
+            document.getElementById('quiz-progress-badge').classList.add('hidden');
+            const resultBox = document.getElementById('quiz-result-box');
+            resultBox.classList.remove('hidden');
+
+            const finalScore = Math.round(score);
+            document.getElementById('final-score-val').textContent = finalScore;
+
+            const starEl = document.getElementById('star-rating');
+            const msgEl = document.getElementById('result-message');
+            const emojiEl = document.getElementById('result-emoji');
+
+            if (finalScore >= 85) {
+                starEl.textContent = '⭐ ⭐ ⭐ ⭐ ⭐';
+                emojiEl.textContent = '🏆';
+                msgEl.textContent = "Luar biasa! Kamu adalah Pendengar Sangat Baik! Kamu memahami seluruh isi dongeng Semut dan Belalang secara sempurna!";
+            } else if (finalScore >= 70) {
+                starEl.textContent = '⭐ ⭐ ⭐ ⭐ ⚪';
+                emojiEl.textContent = '🌟';
+                msgEl.textContent = "Hebat! Kamu sudah memahami sebagian besar isi dongeng. Pelajari kembali materi untuk meraih skor maksimal!";
+            } else {
+                starEl.textContent = '⭐ ⭐ ⭐ ⚪ ⚪';
+                emojiEl.textContent = '🌱';
+                msgEl.textContent = "Tetap semangat! Kamu dapat menyimak kembali video dongeng dan mengulang kuis ini untuk hasil yang lebih memuaskan.";
+            }
+        }
+
+        function restartQuiz() {
+            currentQIndex = 0;
+            score = 0;
+            document.getElementById('quiz-result-box').classList.add('hidden');
+            document.getElementById('quiz-progress-badge').classList.remove('hidden');
+            document.getElementById('quiz-box').classList.remove('hidden');
+            loadQuestion();
+        }
+
+        // --- INITIALIZATION ON LOAD ---
+        window.onload = function() {
+            renderReorderList();
+            renderReflectionCases();
+            loadQuestion();
+        };
+    </script>
+</body>
+</html>
